@@ -8,7 +8,7 @@ clean:
 
 # target: deps, Installs all NodeJS dependencies.
 deps:
-	sudo npm install; npm install -g ios-sim
+	sudo npm install; npm install -g ios-sim; sudo npm install -g ios-deploy
 
 # target: setup, runs the setup script.
 setup:
