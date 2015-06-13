@@ -8,10 +8,23 @@ angular.module('myApp.search', [])
 
 	var timeout = setInterval(function() {
 		$scope.getRestaurants();
-	}, 2000);
+	}, 1000);
 
-	$scope.$on('foundBeacons', function (beaconList) {
-		beaconList = beaconList;
+	$scope.$on('beaconsFound', function (event) {
+		console.log('immediate', event.immediate);
+		console.log('near', event.near);
+		console.log('far', event.far);
+		if (event.immediate && event.immediate.length > 0) {
+			beaconList.push(event.immediate);
+		}
+		if (event.near && event.near.length > 0) {
+			beaconList.push(event.near);
+		}
+		if (event.far && event.far.length > 0) {
+			beaconList.push(event.far);
+		}
+		// debugger;
+		// console.log("Beacon immediate: " + event.immediate[0].uuid + " - " + event.immediate[0].accuracy)
 		beaconListLength = beaconList.length;
 	});
 
