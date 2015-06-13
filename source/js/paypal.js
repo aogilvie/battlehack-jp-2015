@@ -23,11 +23,15 @@ angular.module('myApp.paypal', [])
 		}, function () {
 		  	// further setup
 		  	console.log('next step');
+		  	PayPalMobile.renderSinglePaymentUI(createPayment(), onSuccesfulPayment, onUserCanceled);
+		  	
 		});
 	};
 
 	function onSuccesfulPayment (payment) {
+		alert('Payment Success! ' + JSON.stringify(payment));
 		console.log('payment success: ' + JSON.stringify(payment, null, 4));
+		$rootScope.go('/home');
 	}
 
 	function onAuthorizationCallback (authorization) {
@@ -48,7 +52,7 @@ angular.module('myApp.paypal', [])
 
 	$scope.pay = function (paymentInfo, successCb, cancelledCb) {
 		// single payment
-		PayPalMobile.renderSinglePaymentUI(createPayment(), onSuccesfulPayment, onUserCanceled);
+		init();
 	};
 
 	$scope.buyInFutureBtn = function (onAuthorizationCb, cancelledCb) {
@@ -67,5 +71,4 @@ angular.module('myApp.paypal', [])
 			'paypalattributes'
 		], onAuthorizationCallback, onUserCanceled);
 	};
-	init();
 })

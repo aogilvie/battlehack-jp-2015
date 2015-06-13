@@ -2,11 +2,18 @@ angular.module('myApp.login', [])
 .controller('LoginCtrl', ['$scope', '$rootScope', '$window', '$state', '$location', function ($scope, $rootScope, $window, $state, $location) {
 	// Login controller
 	function loginFacebook() {
-		function fbSuccess(result) {
-			console.log('logged in, ' result)
-			$rootScope.go('/search');
+		var fbSuccess = function(result) {
+			console.log('logged in: ', result);
+			window.user = {
+				id: result.authResponse.userID,
+				secret: result.authResponse.accessToken
+			};
+			setTimeout(function() {
+				$rootScope.go('/search');
+			}, 500);
+			
 		}
-		function fbFailure(error) {
+		var fbFailure = function(error) {
 			// console.error(JSON.stringify(error));
 			// auto login in development
 			fbSuccess({ id: '0000000001', secret: 'abc123456789' });
