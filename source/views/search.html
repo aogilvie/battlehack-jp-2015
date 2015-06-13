@@ -2,25 +2,21 @@
 	<h1 class="title">Nearby</h1>
 </ion-header-bar>
 
-<section>
-<div ng-hide="showList">
-	<div id="loading">Loading</div>
-</div>
-</section>
-
 <ion-content>
 	<ion-refresher 
 		pulling-text="Pull to refresh..." 
 		on-refresh="getRestaurants()">
   	</ion-refresher>
 
+	<div ng-hide="showList" class="loading">
+		<i class="icon ion-loading-c"></i> Loading...
+	</div>
+
 	<ion-list class="list" ng-show="showList">
-		<ion-item class="item item-thumbnail-left" ng-repeat="restaurant in restaurants">
-			<div ng-click="goToRestaurant({{restaurant.id}})">
-				<img src=""></img>
-				<h2>{{restaurant.data.name}}</h2>
-				<p>{{restaurant.data.description}}</p>
-			</div>
+		<ion-item class="item item-thumbnail-left" ng-repeat="restaurant in restaurants" ng-click="goToRestaurant({{restaurant.id}})">
+			<img src=""></img>
+			<h2>{{restaurant.data.name}}</h2>
+			<p>{{restaurant.data.desc}}</p>
 		</ion-item>
 	</ion-list>
 </ion-content>
