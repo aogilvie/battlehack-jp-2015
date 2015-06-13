@@ -13,7 +13,7 @@ angular.module('myApp.table', [])
 
 	$scope.tableId = 'B9407F30-F5F8-466E-AFF9-25556B57FE6D';
 
-	
+
 	$scope.players = [67563683055, 67563683056];
 
 	var timeout = setInterval(function() {
@@ -30,14 +30,14 @@ angular.module('myApp.table', [])
 			secret: 'secret',
 			merchantId: $scope.restaurant.uid,
 			tableId: $scope.tableId,
-			userId: 'userId'
+			userId: 'userId' + Date.now()
 		});
 			
 		responsePromise.success(function(data, status, headers, config) {
 			clearInterval(timeout);
 
 			$rootScope.go('/orderMenu', {
-				id: $scope.restaurant.uid,
+				restaurant: $scope.restaurant,
 				tableId: $scope.tableId,
 				data: data
 			});
