@@ -1,25 +1,23 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
+'use strict';
+var $rootScope;
+
+angular.module('myApp', [
+    'ionic',
+    'ngSanitize',
+    'myApp.controllers'
+]).
+config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    $stateProvider.state('home', {url:'/home', templateUrl: 'views/login.html', controller: 'IndexCtrl'});
+    $stateProvider.state('link1', {url:'/link1:properties', templateUrl: 'views/link1.html', controller: 'LoginCtrl'});
+    $stateProvider.state('link2', {url:'/link2', templateUrl: 'views/link2.html', controller: 'AnotherCtrl'});
+    $urlRouterProvider.otherwise('/home');
+}]);
+
 var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
+        bootstrapIonic();
     },
     // Bind Event Listeners
     //
@@ -32,20 +30,21 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    receivedEvent: function (id) {
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
     }
 };
 
 app.initialize();
+
+function bootstrapIonic() {
+    // BootStrap ionic / Angular
+    angular.element(document).ready(function () {
+        var injector = angular.bootstrap(document, ['myApp']);
+        $rootScope = injector.get("$rootScope");
+    });
+}
