@@ -11,6 +11,18 @@ angular.module('myApp.orderMenu', [])
 		$rootScope.go('/search');
 	}
 
+	var menu = $scope.data.restaurant.data.menu;
+	$scope.menu = {};
+
+	for (var i = 0; i < menu.length; i++) {
+		$scope.menu[i] = {
+			id: menu[i].id,
+			name: menu[i].name,
+			price: menu[i].price,
+			count: 0
+		};
+	}
+
 	if ($scope.isMenu === undefined) {
 		$scope.isMenu = true;
 	}
@@ -19,12 +31,16 @@ angular.module('myApp.orderMenu', [])
 		$rootScope.go('/search');
 	};
 
-	$scope.minus = function (index) {
+	$scope.minus = function (id) {
+		$scope.menu[id].count--;
 
+		if ($scope.menu[id].count < 0) {
+			$scope.menu[id].count = 0;
+		}
 	};
 
-	$scope.add = function (index) {
-
+	$scope.add = function (id) {
+		$scope.menu[id].count++;
 	};
 
 	$scope.goMenu = function () {
@@ -38,22 +54,4 @@ angular.module('myApp.orderMenu', [])
 	$scope.checkout = function () {
 		$rootScope.go('/checkout');
 	};
-
-	$scope.getMenu = function () {
-		var responsePromise = $http.post(window.app.HOST + '/api/merchant/menu/get', {
-			id: $scope.data.id
-		});
-			
-		responsePromise.success(function(data, status, headers, config) {
-			console.log(data);
-
-			$scope.menu = data;
-		});
-
-		responsePromise.error(function(data, status, headers, config) {
-			console.error('fail', data);
-		});
-	};
-
-	$scope.getMenu();
 }]);

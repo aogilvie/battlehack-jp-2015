@@ -1,6 +1,6 @@
 <ion-header-bar align-title="center" class="bar bar-header bar-positive">
 	<button class="button button-large button-positive  ion-location" ng-click="goSearch()"></button>
-	<h1 class="title">{{restaurant.data.name}}</h1>
+	<h1 class="title">{{data.restaurant.data.name}}</h1>
 </ion-header-bar>
 
 <ion-content>
@@ -13,9 +13,9 @@
 						<div>¥{{food.price}}</div>
 					</div>
 					<div class="buttons inline right">
-						<div class="inline" style="border: 1px solid; background-color: #ccc; padding: 12px 15px; font-size: 20px;">0</div>
-						<button class="button button-calm ion-minus-round inline" ng-click="minus()"></button>
-						<button class="button button-calm ion-plus-round inline" ng-click="add()"></button>
+						<div class="inline" style="border: 1px solid; background-color: #ccc; padding: 12px 15px; font-size: 20px;">{{food.count}}</div>
+						<button class="button button-calm ion-minus-round inline" ng-click="minus(food.id)"></button>
+						<button class="button button-calm ion-plus-round inline" ng-click="add(food.id)"></button>
 					</div>
 				</ion-item>
 			</ion-list>
@@ -29,7 +29,10 @@
 						<div>{{food.price}}</div>
 					</div>
 					<div class="inline right">
-						<div>image<div>1</div></div>
+						<div>
+							<img src="http://graph.facebook.com/67563683055/picture?type=small"class="inline" style="margin: 2px;"></img>
+							<div>{{food.count}}</div>
+						</div>
 					</div>
 				</ion-item>
 			</ion-list>
