@@ -2,3 +2,7 @@
 	<button class="button button-large button-positive ion-arrow-left-a" ng-click="goBack()"></button>
 	<h1 class="title">{{restaurant.name}} Checkout</h1>
 </ion-header-bar>
+
+<ion-footer-bar align-title="center" ng-controller='PaypalCtrl' class="bar bar-footer bar-light" style="height: 65px;">
+	<button class="button button-block button-balanced" ng-click="pay()">Pay</button>
+</ion-footer-bar>
