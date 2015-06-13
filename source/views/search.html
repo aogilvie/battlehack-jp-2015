@@ -3,7 +3,7 @@
 </ion-header-bar>
 
 <section>
-<div ng-show={{!showList}}>
+<div ng-hide="showList">
 	<div id="loading">Loading</div>
 </div>
 </section>
@@ -14,7 +14,7 @@
 		on-refresh="getRestaurants()">
   	</ion-refresher>
 
-	<ion-list class="list" ng-show={{showList}}>
+	<ion-list class="list" ng-show="showList">
 		<ion-item class="item" ng-repeat="restaurant in restaurants">
 			<div ng-click="goToRestaurant({{restaurant.id}})">{{$index + 1}}. {{restaurant.name}}</a>
 		</ion-item>

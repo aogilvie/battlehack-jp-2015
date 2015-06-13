@@ -8,7 +8,11 @@ angular.module('myApp', [
 	'myApp.login',
 	'myApp.search',
 	'myApp.restaurant',
+	'myApp.table',
+	'myApp.orderMenu',
+	'myApp.checkout',
 ])
+
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
 		url:'/home', 
@@ -26,6 +30,24 @@ angular.module('myApp', [
 		url:'/restaurant:properties', 
 		templateUrl: 'views/restaurant.html', 
 		controller: 'RestaurantCtrl'
+	});
+
+	$stateProvider.state('table', {
+		url:'/table:properties', 
+		templateUrl: 'views/table.html', 
+		controller: 'TableCtrl'
+	});
+
+	$stateProvider.state('orderMenu', {
+		url:'/orderMenu:properties', 
+		templateUrl: 'views/orderMenu.html', 
+		controller: 'OrderMenuCtrl'
+	});
+
+	$stateProvider.state('checkout', {
+		url:'/checkout:properties', 
+		templateUrl: 'views/checkout.html', 
+		controller: 'CheckoutCtrl'
 	});
 
 	$urlRouterProvider.otherwise('/home');
