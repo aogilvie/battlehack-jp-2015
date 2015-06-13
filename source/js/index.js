@@ -10,6 +10,7 @@ angular.module('myApp', [
 	'myApp.restaurant',
 	'myApp.table',
 	'myApp.orderMenu',
+	'myApp.checkout',
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -41,6 +42,12 @@ angular.module('myApp', [
 		url:'/orderMenu:properties', 
 		templateUrl: 'views/orderMenu.html', 
 		controller: 'OrderMenuCtrl'
+	});
+
+	$stateProvider.state('checkout', {
+		url:'/checkout:properties', 
+		templateUrl: 'views/checkout.html', 
+		controller: 'CheckoutCtrl'
 	});
 
 	$urlRouterProvider.otherwise('/home');

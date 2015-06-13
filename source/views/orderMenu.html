@@ -7,7 +7,7 @@
 
 <ion-content>
 	<ion-scroll direction="y" style="width: 100%; height: 100%">
-		<div id="menu" ng-show={{isMenu}}>
+		<div id="menu" ng-show="isMenu">
 			<ion-list class="list" ng-repeat="food in menu">
 				<ion-item class="item">
 					<div class="inline">
@@ -23,10 +23,36 @@
 			</ion-list>
 		</div>
 
-		<div id="order" ng-show={{!isMenu}}>
+		<div id="order" ng-hide="isMenu">
+			<ion-list class="list" ng-repeat="food in menu">
+				<ion-item class="item">
+					<div class="inline">
+						<div>{{food.name}}</div>
+						<div>{{food.price}}</div>
+					</div>
+					<div class="inline right">
+						<div>image<div>1</div></div>
+					</div>
+				</ion-item>
+			</ion-list>
 		</div>
 	</ion-scroll>
 </ion-content>
+
+<div ng-hide="isMenu" class="bar bar-footer" style="margin-bottom: 64px;">
+	<div>
+		<div>
+			<div>Total</div>
+			<div>1234</div>
+		</div>
+	</div>
+	<hr></hr>
+	<div>
+		<div>YOU PAY</div>
+		<div>50000</div>
+		<button class="button button-balanced" ng-click="checkout()">CHECKOUT</button>
+	</div>
+</div>
 
 <ion-footer-bar align-title="center" class="bar bar-footer bar-light">
 	<div class="buttons">

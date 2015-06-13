@@ -28,13 +28,15 @@ angular.module('myApp.orderMenu', [])
 	};
 
 	$scope.goMenu = function () {
-		console.log($scope.isMenu)
 		$scope.isMenu = true;
 	};
 
 	$scope.goOrder = function () {
-		console.log($scope.isMenu)
 		$scope.isMenu = false;
+	};
+
+	$scope.checkout = function () {
+		$rootScope.go('/checkout');
 	};
 
 	$scope.menu = [{
