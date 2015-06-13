@@ -61,10 +61,7 @@ var onRanging = function (event) {
 	// Each beacon in the array has the following properties:
 	// event.immediate[0].uuid
 	// event.immediate[0].accuracy (cm)
-	if (event.immediate && event.immediate.length > 0) {
-		console.log("Beacon immediate: " + event.immediate[0].uuid + " - " + event.immediate[0].accuracy)
-		$rootScope.$broadcast('beaconsFound', event.immediate);
-	}
+	$rootScope.$broadcast('beaconsFound', event);
 };
 var app = {
 	// Constants
