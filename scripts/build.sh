@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm -rf mobile/www/
 cp -R source mobile/www/
 
