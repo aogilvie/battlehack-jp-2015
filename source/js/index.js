@@ -11,6 +11,7 @@ angular.module('myApp', [
 	'myApp.table',
 	'myApp.orderMenu',
 	'myApp.checkout',
+	'myApp.paypal'
 ])
 
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -86,13 +87,16 @@ var app = {
 	onDeviceReady: function () {
 		app.receivedEvent('deviceready');
 		// Start ranging
+		/*
 		window.iBeacon.addBeacons([
 			{ uuid: '4AC9B27B-2CDE-C989-1B36-663865BD438C' },
 			{ uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D' }, 
 			{ uuid: '7C13FCD7-903A-F70E-23B2-000698DAB067' }
 		]);
 		window.iBeacon.startRangingBeaconsInRegion();
-
+		*/
+		// Start monitoring then range
+		window.iBeacon.startMonitoringBeaconsInRegion();
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function (id) {

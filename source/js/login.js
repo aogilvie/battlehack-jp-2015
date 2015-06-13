@@ -6,16 +6,17 @@ angular.module('myApp.login', [])
 			$rootScope.go('/search');
 		}
 		function fbFailure(error) {
-			console.error(JSON.stringify(error));
+			// console.error(JSON.stringify(error));
+			// auto login in development
+			fbSuccess({ id: '0000000001', secret: 'abc123456789' });
 		}
-		// auto login in development
-		fbSuccess({ id: '0000000001', secret: 'abc123456789' });
-		return;
+		
 		if (window.cordova.platformId === 'browser') {
 			window.facebookConnectPlugin.browserInit('1601282223489096');
 		}
-		window.facebookConnectPlugin.logout();
-		window.facebookConnectPlugin.login(['email'], fbSuccess, fbFailure);
+		window.facebookConnectPlugin.logout(function () {
+			window.facebookConnectPlugin.login(['email'], fbSuccess, fbFailure);
+		});
 	}
 
 	$rootScope.login = function (provider) {

@@ -1,11 +1,10 @@
 'use strict';
 
-angular.module('myApp.controllers', [])
-
-.controller('paypal', function($scope) {
-	$scope.init = function () {
+angular.module('myApp.paypal', [])
+.controller('PaypalCtrl', function($scope) {
+	function init() {
 		var clientIDs = {
-			// /'PayPalEnvironmentProduction': 'AZrRDYyU01FEHsmEx-cDCvuljfbQZBuQD5Zw0AVq59C8Mbtc4ngl16a8DZwhRW5KQqJBvicJaxmWWkV0',
+			// 'PayPalEnvironmentProduction': 'AZrRDYyU01FEHsmEx-cDCvuljfbQZBuQD5Zw0AVq59C8Mbtc4ngl16a8DZwhRW5KQqJBvicJaxmWWkV0',
 			'PayPalEnvironmentSandbox': 'AZrRDYyU01FEHsmEx-cDCvuljfbQZBuQD5Zw0AVq59C8Mbtc4ngl16a8DZwhRW5KQqJBvicJaxmWWkV0'
 		};
 
@@ -26,15 +25,6 @@ angular.module('myApp.controllers', [])
 		});
 	};
 
-	// ## example
-	function createPayment() {
-		// for simplicity use predefined amount
-		// optional payment details for more information check [helper js file](https://github.com/paypal/PayPal-Cordova-Plugin/blob/master/www/paypal-mobile-js-helper.js)
-		var paymentDetails = new PayPalPaymentDetails('50.00', '0.00', '0.00');
-		var payment = new PayPalPayment('50.00', 'USD', 'Awesome Sauce', 'Sale', paymentDetails);
-		return payment;
-	}
-
 	function onSuccesfulPayment (payment) {
 		console.log('payment success: ' + JSON.stringify(payment, null, 4));
 	}
@@ -47,9 +37,15 @@ angular.module('myApp.controllers', [])
 
 	}
 
-	// ##
+	function createPayment() {
+		// for simplicity use predefined amount
+		// optional payment details for more information check [helper js file](https://github.com/paypal/PayPal-Cordova-Plugin/blob/master/www/paypal-mobile-js-helper.js)
+		var paymentDetails = new PayPalPaymentDetails('50.00', '0.00', '0.00');
+		var payment = new PayPalPayment('50.00', 'USD', 'Awesome Sauce', 'Sale', paymentDetails);
+		return payment;
+	}
 
-	$scope.buyNowBtn = function (paymentInfo, successCb, cancelledCb) {
+	$scope.pay = function (paymentInfo, successCb, cancelledCb) {
 		// single payment
 		PayPalMobile.renderSinglePaymentUI(createPayment(), onSuccesfulPayment, onUserCanceled);
 	};
@@ -70,4 +66,5 @@ angular.module('myApp.controllers', [])
 			'paypalattributes'
 		], onAuthorizationCallback, onUserCanceled);
 	};
+	init();
 })

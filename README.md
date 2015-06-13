@@ -10,3 +10,6 @@ web: [mobile/platforms/browser/www/index.html](mobile/platforms/browser/www/inde
 iOS: [mobile/platforms/ios/www/index.html](mobile/platforms/browser/www/index.html)
 
 Android: [mobile/platforms/android/www/index.html](mobile/platforms/browser/www/index.html)
+
+
+MUST add the following to the app .plist: NSLocationWhenInUseUsageDescription and NSLocationAlwaysUsageDescription

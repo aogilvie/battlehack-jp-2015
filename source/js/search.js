@@ -57,7 +57,7 @@ angular.module('myApp.search', [])
 	};
 
 	$scope.goToRestaurant = function (index) {
-		clearTimout(timeout);
+		clearTimeout(timeout);
 		$rootScope.go('/restaurant', index);
 	};
 }]);
