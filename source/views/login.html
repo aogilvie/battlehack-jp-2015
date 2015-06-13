@@ -1,17 +1,19 @@
-<section style="display: inline-block">
-    <section style="padding: 8px">
-        <h1>{{ TITLE }}</h1>
-    </section>
-    <section style="padding: 8px">
-        <h2>A simple login screen</h2>
-    </section>
-</section>
-<div style="height: 20px"></div>
-<section style="display: inline-block; float: right">
-    <section style="padding-right: 25px">
-        <h1 style="text-align: right" on-tap="go('/link1')">Button</h1>
-    </section>
-    <section style="padding-right: 25px">
-        <h1 style="text-align: right" on-tap="go2('/link2')">Button</h1>
-    </section>
-</section>
+<div ng-controller="LoginCtrl">
+	<section style="display: inline-block">
+		<section style="padding: 8px">
+			<h1>{{ TITLE }}</h1>
+		</section>
+		<section style="padding: 8px">
+			<h2>A simple login screen</h2>
+		</section>
+	</section>
+	<div style="height: 20px"></div>
+	<section style="display: inline-block; float: right">
+		<section style="padding-right: 25px">
+			<h1 style="text-align: right" on-tap="login('facebook')">Login</h1>
+		</section>
+		<section style="padding-right: 25px">
+			<h1 style="text-align: right" on-tap="go('/link2')">Button</h1>
+		</section>
+	</section>
+</div>

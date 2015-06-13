@@ -10,7 +10,7 @@ angular.module('myApp', [
 config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('home', {url:'/home', templateUrl: 'views/login.html', controller: 'IndexCtrl'});
     $stateProvider.state('link1', {url:'/link1:properties', templateUrl: 'views/link1.html', controller: 'LoginCtrl'});
-    $stateProvider.state('link2', {url:'/link2', templateUrl: 'views/link2.html', controller: 'AnotherCtrl'});
+    $stateProvider.state('main', {url:'/main', templateUrl: 'views/main.html', controller: 'MainCtrl'});
     $urlRouterProvider.otherwise('/home');
 }]);
 
