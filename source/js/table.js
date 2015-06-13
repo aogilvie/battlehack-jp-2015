@@ -12,8 +12,14 @@ angular.module('myApp.table', [])
 	}
 
 	$scope.goBack = function () {
-		console.log($scope.restaurant)
 		$rootScope.go('/restaurant', $scope.restaurant.id);
+	};
+
+	$scope.goToOrderMenu = function () {
+		$rootScope.go('/orderMenu', {
+			id: $scope.restaurant.id,
+			tableId: 3
+		});
 	};
 
 	$scope.tableId = 3;
