@@ -1,33 +1,51 @@
 'use strict';
 
 angular.module('myApp.search', [])
-.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$state', function ($scope, $rootScope, $location, $state) {
+.controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$state', '$http', function ($scope, $rootScope, $location, $state, $http) {
+	var beaconList = [];
+	var beaconListLength = 0;
+	var sendObject = { ids: []};
+	var timeout = setInterval(function() {
+		$scope.getRestaurants();
+	}, 2000);
+
+	$scope.$on('foundBeacons', function (beaconList) {
+		beaconList = beaconList;
+		beaconListLength = beaconList.length;
+	});
+
+	if (cordova.platformId === 'browser') {
+		setInterval(function () {
+			if (sendObject.ids.length === 0) {
+				sendObject.ids.push('4AC9B27B-2CDE-C989-1B36-663865BD438C');
+			}
+			beaconListLength = Math.floor(Math.random()*3);
+		}, 1000);
+	}
+
 	$scope.showList = true;
 
-	$scope.beaconsIds = [];
-
-	$scope.scanBeacons = function () {
-
-	};
-
 	$scope.getRestaurants = function () {
+		// Check list changed?
+		if (beaconListLength !== beaconList.length) {
+			// Request restaurant data from server
+			beaconList.every(function (obj) {
+				sendObject.ids.push(obj.uuid);
+			});
 
+			var responsePromise = $http.post(window.app.HOST + "/api/merchant/get", sendObject);
+			responsePromise.success(function(data, status, headers, config) {
+				$scope.restaurants = data.merchants;
+				console.log("###", $scope.restaurants)
+			});
+			responsePromise.error(function(data, status, headers, config) {
+				console.error('fail', data);
+			});
+		}
 	};
 
 	$scope.goToRestaurant = function (index) {
+		clearTimout(timeout);
 		$rootScope.go('/restaurant', index);
 	};
-
-	$scope.restaurants = [{
-		id: '1',
-		name: 'Sushi King',
-		url: 'https://lh5.googleusercontent.com/VyIBTIk3uTvC6Beu3TvMRAUSR3g0YWfMfSZPka3QmABaRaRNMrgE2776L5sOtRp5nzvOsEk6nH3IYwM=w1256-h558',
-		description: 'Sushi'
-	}, {
-		id: '2',
-		name: 'Yoshinoya'
-	}, {
-		id: '1',
-		name: 'Sushi King'
-	}];
 }]);

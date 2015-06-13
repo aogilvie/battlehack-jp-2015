@@ -11,15 +11,15 @@
 <ion-content>
 	<ion-refresher 
 		pulling-text="Pull to refresh..." 
-		on-refresh="scanBeacons()">
+		on-refresh="getRestaurants()">
   	</ion-refresher>
 
 	<ion-list class="list" ng-show="showList">
 		<ion-item class="item item-thumbnail-left" ng-repeat="restaurant in restaurants">
 			<div ng-click="goToRestaurant({{restaurant.id}})">
-				<img src="{{restaurant.url}}"></img>
-				<h2>{{restaurant.name}}</h2>
-				<p>{{restaurant.description}}</p>
+				<img src=""></img>
+				<h2>{{restaurant.data.name}}</h2>
+				<p>{{restaurant.data.description}}</p>
 			</div>
 		</ion-item>
 	</ion-list>
