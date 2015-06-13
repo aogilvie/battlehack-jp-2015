@@ -5,6 +5,7 @@ angular.module('myApp', [
 	'ionic',
 	'ngSanitize',
 	'myApp.controllers',
+    'myApp.login',
 	'myApp.search',
 	'myApp.restaurant',
 ])
