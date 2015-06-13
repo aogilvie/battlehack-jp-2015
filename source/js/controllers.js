@@ -18,11 +18,6 @@ angular.module('myApp.controllers', [])
     $scope.TITLE = "Example App";
  
 }])
-.controller('LoginCtrl', ['$scope', '$rootScope', '$window', '$state', '$location', function ($scope, $rootScope, $window, $state, $location) {
-    // Login controller
-    $scope.TITLE = "Awesome App";
-
-}])
 .controller('AnotherCtrl', ['$scope', '$rootScope', '$window', '$state', '$location', function ($scope, $rootScope, $window, $state, $location) {
     // Another controller
 }]);

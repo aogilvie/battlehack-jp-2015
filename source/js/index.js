@@ -4,7 +4,8 @@ var $rootScope;
 angular.module('myApp', [
     'ionic',
     'ngSanitize',
-    'myApp.controllers'
+    'myApp.controllers',
+    'myApp.login'
 ]).
 config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('home', {url:'/home', templateUrl: 'views/login.html', controller: 'IndexCtrl'});
