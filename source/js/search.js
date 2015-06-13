@@ -28,14 +28,14 @@ angular.module('myApp.search', [])
 		beaconListLength = beaconList.length;
 	});
 
-	if (cordova.platformId === 'browser') {
+	//if (cordova.platformId === 'browser') {
 		setInterval(function () {
 			if (sendObject.ids.length === 0) {
 				sendObject.ids.push('4AC9B27B-2CDE-C989-1B36-663865BD438C');
 			}
 			beaconListLength = Math.floor(Math.random()*3);
 		}, 1000);
-	}
+	//}
 
 	$scope.showList = beaconList.length;
 

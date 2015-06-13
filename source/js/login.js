@@ -3,6 +3,7 @@ angular.module('myApp.login', [])
 	// Login controller
 	function loginFacebook() {
 		function fbSuccess(result) {
+			console.log('logged in, ' result)
 			$rootScope.go('/search');
 		}
 		function fbFailure(error) {
@@ -10,13 +11,11 @@ angular.module('myApp.login', [])
 			// auto login in development
 			fbSuccess({ id: '0000000001', secret: 'abc123456789' });
 		}
-		
+
 		if (window.cordova.platformId === 'browser') {
 			window.facebookConnectPlugin.browserInit('1601282223489096');
 		}
-		window.facebookConnectPlugin.logout(function () {
-			window.facebookConnectPlugin.login(['email'], fbSuccess, fbFailure);
-		});
+		window.facebookConnectPlugin.login(['email'], fbSuccess, fbFailure);
 	}
 
 	$rootScope.login = function (provider) {

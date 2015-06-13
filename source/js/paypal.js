@@ -4,7 +4,7 @@ angular.module('myApp.paypal', [])
 .controller('PaypalCtrl', function($scope) {
 	function init() {
 		var clientIDs = {
-			// 'PayPalEnvironmentProduction': 'AZrRDYyU01FEHsmEx-cDCvuljfbQZBuQD5Zw0AVq59C8Mbtc4ngl16a8DZwhRW5KQqJBvicJaxmWWkV0',
+			'PayPalEnvironmentProduction': '123',
 			'PayPalEnvironmentSandbox': 'AZrRDYyU01FEHsmEx-cDCvuljfbQZBuQD5Zw0AVq59C8Mbtc4ngl16a8DZwhRW5KQqJBvicJaxmWWkV0'
 		};
 
@@ -22,6 +22,7 @@ angular.module('myApp.paypal', [])
 			return config;
 		}, function () {
 		  	// further setup
+		  	console.log('next step');
 		});
 	};
 
