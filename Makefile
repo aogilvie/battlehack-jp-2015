@@ -8,7 +8,7 @@ clean:
 
 # target: deps, Installs all NodeJS dependencies.
 deps:
-	sudo npm install
+	sudo npm install; npm install -g ios-sim
 
 # target: setup, runs the setup script.
 setup:
@@ -17,6 +17,10 @@ setup:
 # target: build, runs the build script.
 build:
 	./scripts/build.sh
+
+# target: run, runs the run script.
+run:
+	./scripts/run.sh
 
 # target: lint, Lints every JavaScript file in the project that are staged to be comitted.
 lint:

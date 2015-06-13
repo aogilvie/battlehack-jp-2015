@@ -3,14 +3,17 @@ angular.module('myApp.login', [])
 	// Login controller
 	function loginFacebook() {
 		function fbSuccess(result) {
-			console.log(JSON.stringify(error))
+			console.log(JSON.stringify(result));
 		}
 		function fbFailure(error) {
 			console.error(JSON.stringify(error));
 		}
 
 		if (window.cordova.platformId === 'browser') {
-			window.facebookConnectPlugin.browserInit('1601282223489096');
+			// window.facebookConnectPlugin.browserInit('1601282223489096');
+			// auto login in development
+			fbSuccess({ id: '0000000001', secret: 'abc123456789' });
+			return;
 		}
 		window.facebookConnectPlugin.login(['email'], fbSuccess, fbFailure);
 	}
