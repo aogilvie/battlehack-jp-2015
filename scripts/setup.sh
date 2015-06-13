@@ -7,5 +7,5 @@ pushd mobile
 ../node_modules/cordova/bin/cordova platform add ios android browser
 ../node_modules/cordova/bin/cordova plugin add com.paypal.cordova.mobilesdk
 ../node_modules/cordova/bin/cordova plugin add org.apache.cordova.console
-
+../node_modules/cordova/bin/cordova plugin add https://github.com/aogilvie/phonegap-plugin-iBeacon
 popd

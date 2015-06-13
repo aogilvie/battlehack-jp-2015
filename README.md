@@ -5,4 +5,8 @@
 `make build`
 
 
-Icons: [http://ionicons.com/](http://ionicons.com/)
+web: [mobile/platforms/browser/www/index.html](mobile/platforms/browser/www/index.html)
+
+iOS: [mobile/platforms/ios/www/index.html](mobile/platforms/browser/www/index.html)
+
+Android: [mobile/platforms/android/www/index.html](mobile/platforms/browser/www/index.html)
