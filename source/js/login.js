@@ -11,6 +11,7 @@ angular.module('myApp.login', [])
 		// auto login in development
 		fbSuccess({ id: '0000000001', secret: 'abc123456789' });
 		return;
+		
 		if (window.cordova.platformId === 'browser') {
 			window.facebookConnectPlugin.browserInit('1601282223489096');
 		}

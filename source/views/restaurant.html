@@ -1,24 +1,22 @@
 <ion-header-bar align-title="center" class="bar bar-header bar-positive">
 	<button class="button button-large button-positive ion-arrow-left-a" ng-click="goBack()"></button>
-	<h1 class="title">{{restaurant.name}}</h1>
+	<h1 class="title">{{restaurant.data.name}}</h1>
 </ion-header-bar>
 
 <ion-content>
 	<ion-scroll direction="y" style="width: 100%; height: 100%;">
 		<button class="bar bar-dark" style="position: relative; height: inherit;">
 			<div class="ion-ios-location inline" style="font-size: 20px; margin: 10px;"></div>
-			<div class="inline" style="margin: 10px 5px 5px 5px;">{{restaurant.address}}</div>
+			<div class="inline" style="margin: 10px 5px 5px 5px; text-align: left;">{{restaurant.data.address}}</div>
 		</button>
 		
-		<ion-list class="list" ng-repeat="(key, value) in restaurant.infos">
+		<ion-list class="list" ng-repeat="(key, value) in restaurant.data.info">
 			<ion-item class="item">
 				<div class="inline" style="width: 80px; text-transform: capitalize;">{{key}}</div>
-				<div class="inline">{{value}}</div>
+				<div class="inline" style="text-transform: lowercase;">{{value}}</div>
 			</ion-item>
 		</ion-list>
-		<div>
-			<div>Text</div>
-		</div>
+		<img src="{{restaurant.data.promotion}}"></img>
 	</ion-scroll>
 </ion-content>
 
