@@ -6,6 +6,7 @@ angular.module('myApp.controllers', [])
     $rootScope.back = function () {
         $window.history.back();
     }
+    
     $rootScope.go = function (path, properties) {
         if (properties) {
             properties = JSON.stringify(properties);
@@ -15,14 +16,4 @@ angular.module('myApp.controllers', [])
             $location.url(path);
         }
     }
-    $scope.TITLE = "Example App";
- 
 }])
-.controller('LoginCtrl', ['$scope', '$rootScope', '$window', '$state', '$location', function ($scope, $rootScope, $window, $state, $location) {
-    // Login controller
-    $scope.TITLE = "Awesome App";
-
-}])
-.controller('AnotherCtrl', ['$scope', '$rootScope', '$window', '$state', '$location', function ($scope, $rootScope, $window, $state, $location) {
-    // Another controller
-}]);
