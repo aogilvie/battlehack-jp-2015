@@ -5,6 +5,7 @@ angular.module('myApp.search', [])
 	var beaconList = [];
 	var beaconListLength = 0;
 	var sendObject = { ids: []};
+
 	var timeout = setInterval(function() {
 		$scope.getRestaurants();
 	}, 1000);
@@ -36,7 +37,7 @@ angular.module('myApp.search', [])
 		}, 1000);
 	}
 
-	$scope.showList = true;
+	$scope.showList = beaconList.length;
 
 	$scope.getRestaurants = function () {
 		// Check list changed?
@@ -46,18 +47,36 @@ angular.module('myApp.search', [])
 				sendObject.ids.push(obj.uuid);
 			});
 
-			var responsePromise = $http.post(window.app.HOST + "/api/merchant/get", sendObject);
+			var responsePromise = $http.post(window.app.HOST + '/api/merchant/get', sendObject);
+			
 			responsePromise.success(function(data, status, headers, config) {
 				$scope.restaurants = data.merchants;
+				$scope.showList = $scope.restaurants.length;
 			});
+
 			responsePromise.error(function(data, status, headers, config) {
 				console.error('fail', data);
 			});
+
+			responsePromise.finally(function() {
+				// Stop the ion-refresher from spinning
+		    	$scope.$broadcast('scroll.refreshComplete');
+		    });
 		}
 	};
 
-	$scope.goToRestaurant = function (index) {
-		clearTimout(timeout);
-		$rootScope.go('/restaurant', index);
+	$scope.goToRestaurant = function (id) {
+		clearInterval(timeout);
+
+		for (var i = 0; i < $scope.restaurants.length; i++) {
+			var data = $scope.restaurants[i];
+
+			if (id === data.id) {
+				$rootScope.go('/restaurant', data);
+				break;
+			}
+		}
 	};
+
+	$scope.getRestaurants();
 }]);

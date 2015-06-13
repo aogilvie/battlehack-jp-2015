@@ -1,19 +1,23 @@
 <ion-header-bar align-title="center" class="bar bar-header bar-positive">
 	<button class="button button-large button-positive ion-arrow-left-a" ng-click="goBack()"></button>
-	<h1 class="title">{{restaurant.name}}</h1>
+	<h1 class="title">{{restaurant.data.name}}</h1>
 </ion-header-bar>
 
-<ion-content>
+<ion-content style="text-align: center; padding-top: 100px;">
 	<ion-refresher 
 		pulling-text="Pull to refresh..." 
 		on-refresh="scanBeacons()">
   	</ion-refresher>
 
-	<div>Table</div>
-	<div>Do you want to join</div>
-	<div>Table {{tableId}}</div>
+	<div>Do you want to join this?</div>
+	<div style="font-size: 25px; font-weight: bold; margin: 5px 0px;">Table</div>
+	<div>Already joined:</div>
 
-	<div class="buttons">
+	<ion-list class="list" style="display: block;">
+		<img src="http://graph.facebook.com/67563683055/picture?type=square" ng-repeat="player in players" class="inline" style="margin: 2px;"></img>
+	</ion-list>
+
+	<div class="buttons" style="margin: 30px 10px 10px 10px">
 		<button class="button button-block button-balanced" ng-click="goToOrderMenu()">Yes</button>
 		<button class="button button-block button-stable" ng-click="scanBeacons()">No</button>
 	</div>
