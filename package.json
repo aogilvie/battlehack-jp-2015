@@ -1,0 +1,25 @@
+{
+    "name": "Battlenet-jp",
+    "description": "Battlenet-jp",
+    "version": "0.0.1",
+    "author": "",
+    "homepage": "",
+    "engines": {
+        "node": "0.10.26"
+    },
+    "maintainers": [
+        { "name": "Ally Ogilvie", "email": "" }
+    ],
+    "scripts": {
+        "start": "node ."
+    },
+    "main": "index.js",
+    "dependencies": {
+        "cordova": "5.1.1",
+        "ionic": "*",
+        "bower": "*"
+    },
+    "licenses": [
+        { "type": "Private", "url": "" }
+    ]
+}
