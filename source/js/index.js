@@ -5,7 +5,7 @@ angular.module('myApp', [
 	'ionic',
 	'ngSanitize',
 	'myApp.controllers',
-    'myApp.login',
+	'myApp.login',
 	'myApp.search',
 	'myApp.restaurant',
 ])
@@ -30,8 +30,23 @@ angular.module('myApp', [
 
 	$urlRouterProvider.otherwise('/home');
 }])
+var onRanging = function (event) {
+	// event.unknown []
+	// event.immediate []
+	// event.near []
+	// event.far []
 
+	// Each beacon in the array has the following properties:
+	// event.immediate[0].uuid
+	// event.immediate[0].accuracy (cm)
+	if (event.immediate && event.immediate.length > 0) {
+		console.log("Beacon immediate: " + event.immediate[0].uuid + " - " + event.immediate[0].accuracy)
+		$rootScope.$broadcast('beaconsFound', event.immediate);
+	}
+};
 var app = {
+	// Constants
+	HOST: 'https://smartlet.herokuapp.com',
 	// Application Constructor
 	initialize: function() {
 		this.bindEvents();
@@ -43,6 +58,7 @@ var app = {
 	// 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents: function() {
 		document.addEventListener('deviceready', this.onDeviceReady, false);
+		document.addEventListener('iBeaconRanging', onRanging, false);
 	},
 	// deviceready Event Handler
 	//
@@ -50,6 +66,14 @@ var app = {
 	// function, we must explicitly call 'app.receivedEvent(...);'
 	onDeviceReady: function () {
 		app.receivedEvent('deviceready');
+		// Start ranging
+		window.iBeacon.addBeacons([
+			{ uuid: '4AC9B27B-2CDE-C989-1B36-663865BD438C' },
+			{ uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D' }, 
+			{ uuid: '7C13FCD7-903A-F70E-23B2-000698DAB067' }
+		]);
+		window.iBeacon.startRangingBeaconsInRegion();
+
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function (id) {
