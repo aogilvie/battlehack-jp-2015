@@ -2,8 +2,8 @@
 
 angular.module('myApp.orderMenu', [])
 .controller('OrderMenuCtrl', [
-	'$scope', '$rootScope', '$location', '$state', '$stateParams', 
-	function ($scope, $rootScope, $location, $state, $stateParams) {
+	'$scope', '$rootScope', '$location', '$state', '$stateParams', '$http', 
+	function ($scope, $rootScope, $location, $state, $stateParams, $http) {
 
 	$scope.data = JSON.parse($stateParams.properties);
 
@@ -19,11 +19,11 @@ angular.module('myApp.orderMenu', [])
 		$rootScope.go('/search');
 	};
 
-	$scope.minus = function () {
+	$scope.minus = function (index) {
 
 	};
 
-	$scope.add = function () {
+	$scope.add = function (index) {
 
 	};
 
@@ -39,11 +39,21 @@ angular.module('myApp.orderMenu', [])
 		$rootScope.go('/checkout');
 	};
 
-	$scope.menu = [{
-		name: 'chicken',
-		price: 200,
-	}, {
-		name: 'lamb',
-		price: 1000
-	}];
+	$scope.getMenu = function () {
+		var responsePromise = $http.post(window.app.HOST + '/api/merchant/menu/get', {
+			id: $scope.data.id
+		});
+			
+		responsePromise.success(function(data, status, headers, config) {
+			console.log(data);
+
+			$scope.menu = data;
+		});
+
+		responsePromise.error(function(data, status, headers, config) {
+			console.error('fail', data);
+		});
+	};
+
+	$scope.getMenu();
 }]);

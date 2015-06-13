@@ -13,12 +13,20 @@ angular.module('myApp.table', [])
 
 	$scope.tableId = 'B9407F30-F5F8-466E-AFF9-25556B57FE6D';
 
+	
+	$scope.players = [67563683055, 67563683056];
+
+	var timeout = setInterval(function() {
+		$scope.getUsers();
+	}, 1000);
+
+
 	$scope.goBack = function () {
 		$rootScope.go('/restaurant', $scope.restaurant);
 	};
 
 	$scope.goToOrderMenu = function () {
-		var responsePromise = $http.post(window.app.HOST + '/api/table/join/', {
+		var responsePromise = $http.post(window.app.HOST + '/api/merchant/table/join/', {
 			secret: 'secret',
 			merchantId: $scope.restaurant.uid,
 			tableId: $scope.tableId,
@@ -26,9 +34,7 @@ angular.module('myApp.table', [])
 		});
 			
 		responsePromise.success(function(data, status, headers, config) {
-			console.log(data)
-
-			clearTimeout(timeout);
+			clearInterval(timeout);
 
 			$rootScope.go('/orderMenu', {
 				id: $scope.restaurant.uid,
@@ -42,25 +48,15 @@ angular.module('myApp.table', [])
 		});
 	};
 
-	$scope.players = [67563683055, 67563683056];
-
-
-	var timeout = setInterval(function() {
-		$scope.getUsers();
-	}, 1000);
-
 	$scope.getUsers = function () {
-		var responsePromise = $http.post(window.app.HOST + '/api/table/users/', {
+		var responsePromise = $http.post(window.app.HOST + '/api/merchant/table/users/', {
 			secret: 'secret',
 			merchantId: $scope.restaurant.uid,
 			tableId: $scope.tableId
 		});
 			
 		responsePromise.success(function(data, status, headers, config) {
-
-			console.log(data)
-
-			//$scope.players = data;
+			$scope.players = data.users;
 		});
 
 		responsePromise.error(function(data, status, headers, config) {
