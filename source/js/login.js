@@ -4,6 +4,7 @@ angular.module('myApp.login', [])
 	function loginFacebook() {
 		function fbSuccess(result) {
 			console.log(JSON.stringify(result));
+			$rootScope.go('/search');
 		}
 		function fbFailure(error) {
 			console.error(JSON.stringify(error));
@@ -22,6 +23,7 @@ angular.module('myApp.login', [])
 		switch (provider) {
 			case 'facebook': {
 				loginFacebook();
+
 			}
 		}
 	};
