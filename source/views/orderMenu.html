@@ -53,9 +53,13 @@
 </div>
 
 
-<div style="width: 100%; margin-bottom: 35px; font-size: 25px;">
-	<div class="inline ion-arrow-up-b" ng-click="goMenu()" style="" ng-show="isMenu"></div>
-	<div class="inline ion-arrow-up-b" ng-click="goOrder()" style="" ng-hide="isMenu"></div>
+<div style="width: 100%; position: absolute; bottom: 35px; font-size: 25px;">
+	<div class="inline" style="width: 48%; text-align: center;">
+		<div class="ion-arrow-up-b" ng-show="isMenu" style="display=inline-block;"></div>
+	</div>
+	<div class="inline" style="width: 48%; text-align: center;">
+		<div class="ion-arrow-up-b" ng-hide="isMenu" style="display=inline-block;"></div>
+	</div>
 </div>
 
 <ion-footer-bar align-title="center" class="bar bar-footer bar-light" style="margin: 0px; padding: 0px;">
