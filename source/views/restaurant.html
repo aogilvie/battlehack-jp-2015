@@ -1,14 +1,30 @@
 <ion-header-bar align-title="center" class="bar bar-header bar-light">
 	<div class="buttons">
-		<button class="ion-arrow-left-a" ng-click="doSomething()"></button>
+		<button class="ion-arrow-left-a" ng-click="goBack()"></button>
 	</div>
-	<h1 class="title">{{title}}</h1>
+	<h1 class="title">{{restaurant.name}}</h1>
 </ion-header-bar>
 
-<ion-scroll direction="y" style="width: 100%; height: 100%">
-	<div></div>
-	<ion-list class="list">
-		<ion-item class="item">
-		</ion-item>
-	</ion-list>
-</ion-scroll>
+<ion-content>
+	<ion-scroll direction="y" style="width: 100%; height: 100%">
+		<div>
+			<div class="ion-ios-location"></div>
+			<div>{{restaurant.address}}</div>
+		</div>
+		<ion-list class="list" ng-repeat="(key, value) in restaurant.infos">
+			<ion-item class="item">
+				<div>{{key}}</div>
+				<div>{{value}}</div>
+			</ion-item>
+		</ion-list>
+		<div>
+			<div>Text</div>
+		</div>
+	</ion-scroll>
+</ion-content>
+
+<ion-footer-bar align-title="center" class="bar bar-footer bar-light">
+	<div class="buttons">
+		<button class="button" ng-click="goTable()">Go In</button>
+	</div>
+</ion-footer-bar>

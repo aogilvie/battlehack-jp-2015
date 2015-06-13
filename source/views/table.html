@@ -1,0 +1,22 @@
+<ion-header-bar align-title="center" class="bar bar-header bar-light">
+	<div class="buttons">
+		<button class="ion-arrow-left-a" ng-click="goBack()"></button>
+	</div>
+	<h1 class="title">{{restaurant.name}}</h1>
+</ion-header-bar>
+
+<ion-content>
+	<ion-refresher 
+		pulling-text="Pull to refresh..." 
+		on-refresh="scanBeacons()">
+  	</ion-refresher>
+
+	<div>Table</div>
+	<div>Do you want to join</div>
+	<div>Table {{tableId}}</div>
+
+	<div class="buttons">
+		<button class="button button-block button-balanced">Yes</button>
+		<button class="button button-block button-stable">No</button>
+	</div>
+</ion-content>

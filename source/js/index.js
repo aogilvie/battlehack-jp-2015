@@ -8,7 +8,9 @@ angular.module('myApp', [
     'myApp.login',
 	'myApp.search',
 	'myApp.restaurant',
+	'myApp.table'
 ])
+
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('home', {
 		url:'/home', 
@@ -26,6 +28,12 @@ angular.module('myApp', [
 		url:'/restaurant:properties', 
 		templateUrl: 'views/restaurant.html', 
 		controller: 'RestaurantCtrl'
+	});
+
+	$stateProvider.state('table', {
+		url:'/table:properties', 
+		templateUrl: 'views/table.html', 
+		controller: 'TableCtrl'
 	});
 
 	$urlRouterProvider.otherwise('/home');

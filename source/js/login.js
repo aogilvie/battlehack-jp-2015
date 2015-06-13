@@ -3,7 +3,6 @@ angular.module('myApp.login', [])
 	// Login controller
 	function loginFacebook() {
 		function fbSuccess(result) {
-			console.log(JSON.stringify(result));
 			$rootScope.go('/search');
 		}
 		function fbFailure(error) {
