@@ -2,8 +2,6 @@
 
 angular.module('myApp.search', [])
 .controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$state', function ($scope, $rootScope, $location, $state) {
-	$scope.title = 'Nearby Restaurants';
-
 	$scope.showList = true;
 
 	$scope.beaconsIds = [];
@@ -22,39 +20,14 @@ angular.module('myApp.search', [])
 
 	$scope.restaurants = [{
 		id: '1',
-		name: 'Sushi King'
+		name: 'Sushi King',
+		url: 'https://lh5.googleusercontent.com/VyIBTIk3uTvC6Beu3TvMRAUSR3g0YWfMfSZPka3QmABaRaRNMrgE2776L5sOtRp5nzvOsEk6nH3IYwM=w1256-h558',
+		description: 'Sushi'
 	}, {
 		id: '2',
 		name: 'Yoshinoya'
 	}, {
 		id: '1',
 		name: 'Sushi King'
-	}, {
-		id: '2',
-		name: 'Yoshinoya'
-	}, {
-		id: '1',
-		name: 'Sushi King'
-	}, {
-		id: '2',
-		name: 'Yoshinoya'
-	}, {
-		id: '1',
-		name: 'Sushi King'
-	}, {
-		id: '2',
-		name: 'Yoshinoya'
-	}, {
-		id: '1',
-		name: 'Sushi King'
-	}, {
-		id: '2',
-		name: 'Yoshinoya'
-	}, {
-		id: '1',
-		name: 'Sushi King'
-	}, {
-		id: '2',
-		name: 'Yoshinoya'
 	}];
 }]);

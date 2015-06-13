@@ -18,7 +18,7 @@ angular.module('myApp.restaurant', [])
 	$scope.restaurant = {
 		id: id,
 		name: 'battleshop',
-		address: 'asdnasjkdan',
+		address: 'asdnjkasd jkansdj akdn kjas dkja jkansd kajnd kjnasjd ajknd aksdn jkasnd kajkdn ',
 		infos: {
 			"open": "123",
 			"phone": "123",

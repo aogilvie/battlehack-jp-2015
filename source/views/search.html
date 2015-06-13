@@ -1,5 +1,5 @@
-<ion-header-bar align-title="center" class="bar bar-header bar-light">
-	<h1 class="title">{{title}}</h1>
+<ion-header-bar align-title="center" class="bar bar-header bar-positive">
+	<h1 class="title">Nearby</h1>
 </ion-header-bar>
 
 <section>
@@ -15,8 +15,12 @@
   	</ion-refresher>
 
 	<ion-list class="list" ng-show="showList">
-		<ion-item class="item" ng-repeat="restaurant in restaurants">
-			<div ng-click="goToRestaurant({{restaurant.id}})">{{$index + 1}}. {{restaurant.name}}</a>
+		<ion-item class="item item-thumbnail-left" ng-repeat="restaurant in restaurants">
+			<div ng-click="goToRestaurant({{restaurant.id}})">
+				<img src="{{restaurant.url}}"></img>
+				<h2>{{restaurant.name}}</h2>
+				<p>{{restaurant.description}}</p>
+			</div>
 		</ion-item>
 	</ion-list>
 </ion-content>
