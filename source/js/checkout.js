@@ -10,8 +10,9 @@ angular.module('myApp.checkout', [])
 	var responsePromise = $http.post(window.app.HOST + '/api/order/check/get', $scope.data);
 		
 	responsePromise.success(function(data, status, headers, config) {
-		console.log(data)
 		$scope.check = data.check;
+
+		window.ppInfo = data.check.ppInfo;
 	});
 
 	responsePromise.error(function(data, status, headers, config) {

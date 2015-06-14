@@ -5,24 +5,25 @@
 
 <ion-content>
 	<ion-scroll direction="y" style="width: 100%; height: 100%">
-	<ion-list class="list"
-		<ion-item class="item item-thumbnail-left" ng-repeat="data in check.lines" style="width: 100%;">
-			<div style="display: 'inline-block; width: 60%;">
+	<ion-list class="list">
+		<ion-item class="item" ng-repeat="data in check.lines" style="width: 100%;">
+			<div style="display: inline-block; width: 60%;">
 				<div>¥{{data.desc}}</div>
 				<div>¥{{data.price}}</div>
 			</div>
-			<div style="display: 'inline-block; width: 30%;">¥{{data.total}}</div>
+			<div style="display: inline-block; width: 30%; text-align: right;">¥{{data.total}}</div>
 		</ion-item>
 	</ion-list>
 	</ion-scroll>
 </ion-content>
 
 <section style="position: absolute; bottom: 64px; text-align: center; width: 100%;">	
-<div>YOU PAY</div>
-<div style="font-size: 30;">¥{{check.total}}</div>
+	<div style="font-size: 25px;">YOU PAY</div>
+	<div style="font-size: 50px; margin: 15px;">¥{{check.total}}</div>
 </section>
 
-<ion-footer-bar align-title="center" ng-controller='PaypalCtrl' class="bar bar-footer bar-light" style="height: 65px;">
-	
-	<button class="button button-block button-balanced" ng-click="pay()">Pay</button>
+<ion-footer-bar align-title="center" ng-controller='PaypalCtrl' class="bar bar-footer bar-light" style="height: 65px; text-align: center; width: 100%;">
+	<div style="display: inline-block; width: 100%;">
+		<img class="button" ng-click="pay()" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal"/>
+	</div>
 </ion-footer-bar>

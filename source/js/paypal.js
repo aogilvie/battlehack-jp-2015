@@ -45,8 +45,8 @@ angular.module('myApp.paypal', [])
 	function createPayment() {
 		// for simplicity use predefined amount
 		// optional payment details for more information check [helper js file](https://github.com/paypal/PayPal-Cordova-Plugin/blob/master/www/paypal-mobile-js-helper.js)
-		var paymentDetails = new PayPalPaymentDetails('50.00', '0.00', '0.00');
-		var payment = new PayPalPayment('50.00', 'USD', 'Awesome Sauce', 'Sale', paymentDetails);
+		var paymentDetails = new PayPalPaymentDetails(window.ppInfo.amount.total || 0, '0.00', '0.00');
+		var payment = new PayPalPayment(window.ppInfo.amount.total, window.ppInfo.amount.currency, window.ppInfo.description, 'Services', paymentDetails);
 		return payment;
 	}
 
