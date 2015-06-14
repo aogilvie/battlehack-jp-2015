@@ -29,7 +29,7 @@ angular.module('myApp.paypal', [])
 	};
 
 	function onSuccesfulPayment (payment) {
-		alert('Payment Success! ' + JSON.stringify(payment));
+		//alert('Payment Success! ' + JSON.stringify(payment));
 		console.log('payment success: ' + JSON.stringify(payment, null, 4));
 		$rootScope.go('/home');
 	}
