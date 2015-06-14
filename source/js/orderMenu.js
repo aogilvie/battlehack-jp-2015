@@ -105,7 +105,6 @@ angular.module('myApp.orderMenu', [])
 			
 		responsePromise.success(function(data, status, headers, config) {
 			$scope.orders = data;
-			console.log(data)
 		});
 
 		responsePromise.error(function(data, status, headers, config) {

@@ -4,8 +4,8 @@
 </ion-header-bar>
 
 <ion-content>
-	<ion-scroll direction="y" style="width: 100%; height: 100%">
-		<div id="menu" ng-show="isMenu">
+	<div id="menu" ng-show="isMenu">
+		<ion-scroll direction="y" style="width: 100%; height: 460px;">
 			<ion-list class="list" ng-repeat="food in menu">
 				<ion-item class="item">
 					<div class="inline">
@@ -13,20 +13,22 @@
 						<div>¥{{food.price}}</div>
 					</div>
 					<div class="buttons inline right">
-						<div class="inline" style="border: 1px solid; background-color: #ccc; padding: 12px 15px; font-size: 20px;">{{food.count}}</div>
+						<div class="inline" style="background-color: #ccc; padding: 12px 15px; font-size: 20px;">{{food.count}}</div>
 						<button class="button button-calm ion-minus-round inline" ng-click="minus(food.id)"></button>
 						<button class="button button-calm ion-plus-round inline" ng-click="add(food.id)"></button>
 					</div>
 				</ion-item>
 			</ion-list>
-		</div>
+		</ion-scroll>
+	</div>
 
-		<div id="order" ng-hide="isMenu">
+	<div id="order" ng-hide="isMenu">
+		<ion-scroll direction="y" style="width: 100%; height: 335px;">
 			<ion-list class="list" ng-repeat="food in orders.items">
 				<ion-item class="item">
 					<div class="inline">
 						<div>{{food.name}}</div>
-						<div>{{food.price}}</div>
+						<div>¥{{food.price}}</div>
 					</div>
 					<div class="inline right" ng-repeat="count in food.users">
 						<div style="position: relative">
@@ -36,16 +38,11 @@
 					</div>
 				</ion-item>
 			</ion-list>
-		</div>
-	</ion-scroll>
+		</ion-scroll>
+	</div>
 </ion-content>
 
 <div ng-hide="isMenu" class="" style="width: 100%; bottom: 55px; position: absolute;">
-	<div style="margin: 5px 0px 10px 10px;">
-		<div>TOTAL</div>
-		<div style="font-size: 24px;">¥{{orders.checkTotal}}</div>
-	</div>
-	<div></div>
 	<div class="" style="width: 100%; text-align: center; padding: 3px 10px;">
 		<div>YOU PAY</div>
 		<div style="font-size: 30px;">¥{{orders.total}}</div>

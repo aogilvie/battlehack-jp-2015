@@ -15,6 +15,10 @@ angular.module('myApp.checkout', [])
 		window.ppInfo = data.check.ppInfo;
 		window.restaurant = $scope.data.restaurant;
 		window.tableId = $scope.data.tableId;
+
+		if (!Object.keys(data.check).length) {
+			$scope.goBack();
+		}
 	});
 
 	responsePromise.error(function(data, status, headers, config) {
