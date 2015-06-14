@@ -3,6 +3,7 @@
 angular.module('myApp.search', [])
 .controller('SearchCtrl', ['$scope', '$rootScope', '$location', '$state', '$http', function ($scope, $rootScope, $location, $state, $http) {
 	var beaconList = [];
+	var beaconMap = {};
 	var beaconListLength = 0;
 	var sendObject = { ids: []};
 
@@ -10,43 +11,56 @@ angular.module('myApp.search', [])
 		$scope.getRestaurants();
 	}, 1000);
 
-	$scope.$on('beaconsFound', function (event) {
-		console.log('immediate', event.immediate);
-		console.log('near', event.near);
-		console.log('far', event.far);
-		if (event.immediate && event.immediate.length > 0) {
-			beaconList.push(event.immediate);
+	$scope.$on('beaconsFound', function (event, beacons) {
+/*
+beacons = { immediate: [] }, { far .... }
+
+*/
+		
+		if (beacons.immediate && beacons.immediate.length > 0) {
+			var exists = false;
+			
+			beacons.immediate.every(function (b) {
+				if (!beaconMap.hasOwnProperty(b.uuid)) {
+					b.timestamp = Date.now();
+					beaconMap[b.uuid] = b;
+				}
+			});
 		}
-		if (event.near && event.near.length > 0) {
-			beaconList.push(event.near);
+		/*
+		if (beacons.near && beacons.near.length > 0) {
+			beaconList.near.push(beacons.near);
 		}
-		if (event.far && event.far.length > 0) {
-			beaconList.push(event.far);
-		}
-		// debugger;
+		if (beacons.far && beacons.far.length > 0) {
+			beaconList.far.push(beacons.far);
+		}*/
 		// console.log("Beacon immediate: " + event.immediate[0].uuid + " - " + event.immediate[0].accuracy)
-		beaconListLength = beaconList.length;
+//		beaconListLength = beaconList.length;
 	});
 
-	//if (cordova.platformId === 'browser') {
+	if (cordova.platformId === 'browser') {
 		setInterval(function () {
 			if (sendObject.ids.length === 0) {
 				sendObject.ids.push('4AC9B27B-2CDE-C989-1B36-663865BD438C');
 			}
 			beaconListLength = Math.floor(Math.random()*3);
 		}, 1000);
-	//}
+	}
 
 	$scope.showList = beaconList.length;
 
 	$scope.getRestaurants = function () {
 		// Check list changed?
-		if (beaconListLength !== beaconList.length) {
+		// if (beaconListLength !== beaconList.length) {
 			// Request restaurant data from server
-			beaconList.every(function (obj) {
-				sendObject.ids.push(obj.uuid);
-			});
-
+		
+		var now = Date.now();
+		for (var key in beaconMap) {
+			if (now - beaconMap[key].timestamp > 10000) {
+				delete beaconMap[key];	
+			}
+		}
+			sendObject.ids = Object.keys(beaconMap);
 			var responsePromise = $http.post(window.app.HOST + '/api/merchant/get', sendObject);
 			
 			responsePromise.success(function(data, status, headers, config) {
@@ -62,7 +76,7 @@ angular.module('myApp.search', [])
 				// Stop the ion-refresher from spinning
 		    	$scope.$broadcast('scroll.refreshComplete');
 		    });
-		}
+		// }
 	};
 
 	$scope.goToRestaurant = function (id) {

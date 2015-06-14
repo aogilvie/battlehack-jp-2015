@@ -62,7 +62,13 @@ var onRanging = function (event) {
 	// Each beacon in the array has the following properties:
 	// event.immediate[0].uuid
 	// event.immediate[0].accuracy (cm)
-	$rootScope.$broadcast('beaconsFound', event);
+	var beacons = {
+		unknown: event.unknown,
+		immediate: event.immediate,
+		near: event.near,
+		far: event.far
+	};
+	$rootScope.$broadcast('beaconsFound', beacons);
 };
 var app = {
 	// Constants
@@ -87,16 +93,16 @@ var app = {
 	onDeviceReady: function () {
 		app.receivedEvent('deviceready');
 		// Start ranging
-		/*
+		
 		window.iBeacon.addBeacons([
-			{ uuid: '4AC9B27B-2CDE-C989-1B36-663865BD438C' },
+			{ uuid: '4AC9B27B-2CDE-C989-1B36-663865BD438C' }/*,
 			{ uuid: 'B9407F30-F5F8-466E-AFF9-25556B57FE6D' }, 
-			{ uuid: '7C13FCD7-903A-F70E-23B2-000698DAB067' }
+			{ uuid: '7C13FCD7-903A-F70E-23B2-000698DAB067' }*/
 		]);
 		window.iBeacon.startRangingBeaconsInRegion();
-		*/
+		
 		// Start monitoring then range
-		window.iBeacon.startMonitoringBeaconsInRegion();
+		// window.iBeacon.startMonitoringBeaconsInRegion();
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function (id) {
