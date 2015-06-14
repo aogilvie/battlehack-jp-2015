@@ -27,10 +27,10 @@ angular.module('myApp.table', [])
 
 	$scope.goToOrderMenu = function () {
 		var responsePromise = $http.post(window.app.HOST + '/api/merchant/table/join/', {
-			secret: 'secret',
+			secret: window.user.secret || 'secret',
 			merchantId: $scope.restaurant.uid,
 			tableId: $scope.tableId,
-			userId: 'userId'
+			userId: window.user.id
 		});
 			
 		responsePromise.success(function(data, status, headers, config) {

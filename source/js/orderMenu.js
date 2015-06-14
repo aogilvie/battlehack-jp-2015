@@ -58,10 +58,10 @@ angular.module('myApp.orderMenu', [])
 		clearInterval(timeout);
 
 		$rootScope.go('/checkout', {
-			secret: 'secret',
+			secret: window.user.secret || 'secret',
 			merchantId: $scope.data.restaurant.uid,
 			tableId: $scope.data.tableId,
-			userId: 'userId',
+			userId: window.user.id || 'userId',
 			restaurant: $scope.data.restaurant
 		});
 	};
@@ -77,10 +77,10 @@ angular.module('myApp.orderMenu', [])
 		}
 
 		var responsePromise = $http.post(window.app.HOST + '/api/order/place', {
-			secret: 'secret',
+			secret: window.user.secret || 'secret',
 			merchantId: $scope.data.restaurant.uid,
 			tableId: $scope.data.tableId,
-			userId: 'userId',
+			userId: window.user.id || 'userId',
 			items: items
 		});
 			
@@ -95,14 +95,13 @@ angular.module('myApp.orderMenu', [])
 
 	$scope.getOrderUpdate = function () {
 		var responsePromise = $http.post(window.app.HOST + '/api/order/get', {
-			secret: 'secret',
+			secret: window.user.secret || 'secret',
 			merchantId: $scope.data.restaurant.uid,
 			tableId: $scope.data.tableId,
-			userId: 'userId'
+			userId: window.user.id || 'userId',
 		});
 			
 		responsePromise.success(function(data, status, headers, config) {
-			console.log(data)
 			$scope.orders = data;
 		});
 
