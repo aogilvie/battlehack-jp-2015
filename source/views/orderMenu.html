@@ -22,16 +22,16 @@
 		</div>
 
 		<div id="order" ng-hide="isMenu">
-			<ion-list class="list" ng-repeat="food in menu">
+			<ion-list class="list" ng-repeat="food in orders.items">
 				<ion-item class="item">
 					<div class="inline">
 						<div>{{food.name}}</div>
 						<div>{{food.price}}</div>
 					</div>
 					<div class="inline right">
-						<div>
-							<img src="http://graph.facebook.com/67563683055/picture?type=small"class="inline" style="margin: 2px;"></img>
-							<div>{{food.count}}</div>
+						<div style="position: relative">
+							<img src="http://graph.facebook.com/67563683055/picture?type=square"class="inline" style="margin: 2px;"></img>
+							<div style="position: absolute; bottom: 5px; background-color: red; color: white; padding: 3px;">{{food.count}}</div>
 						</div>
 					</div>
 				</ion-item>
@@ -40,18 +40,16 @@
 	</ion-scroll>
 </ion-content>
 
-<div ng-hide="isMenu" class="bar bar-footer" style="margin-bottom: 64px;">
-	<div>
-		<div>
-			<div>Total</div>
-			<div>1234</div>
-		</div>
+<div ng-hide="isMenu" class="" style="width: 100%; bottom: 55px; position: absolute;">
+	<div style="margin: 5px 0px 10px 10px;">
+		<div>TOTAL</div>
+		<div style="font-size: 24px;">¥{{orders.checkTotal}}</div>
 	</div>
-	<hr></hr>
-	<div>
+	<div></div>
+	<div class="" style="width: 100%; text-align: center; padding: 3px 10px;">
 		<div>YOU PAY</div>
-		<div>50000</div>
-		<button class="button button-balanced" ng-click="checkout()">CHECKOUT</button>
+		<div style="font-size: 30px;">¥{{orders.total}}</div>
+		<button class="button button-block button-balanced" ng-click="checkout()" style="">CHECKOUT</button>
 	</div>
 </div>
 
