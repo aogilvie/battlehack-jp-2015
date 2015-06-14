@@ -4,7 +4,7 @@ angular.module('myApp.table', [])
 .controller('TableCtrl', [
 	'$scope', '$rootScope', '$location', '$state', '$stateParams', '$http',
 	function ($scope, $rootScope, $location, $state, $stateParams, $http) {
-
+	$scope.foundTable;
 	$scope.restaurant = JSON.parse($stateParams.properties);
 
 	if (!$scope.restaurant) {
@@ -12,10 +12,18 @@ angular.module('myApp.table', [])
 	}
 
 	$scope.tableId = 'B9407F30-F5F8-466E-AFF9-25556B57FE6D';
-
-
 	$scope.players = [67563683055, 67563683056];
-
+	$scope.$on('beaconsFound', function(event, data){
+		if (data.immediate && data.immediate.length > 0) {
+			if (data.immediate[0].accuracy < 0.3) {
+				// Close to a table beacon (30cm)
+				if ($scope.tableId === data.immediate[0].uuid) {
+					console.log('at a table');
+					$scope.foundTable = true;
+				}
+			}
+		}
+	});
 	var timeout = setInterval(function() {
 		$scope.getUsers();
 	}, 1000);

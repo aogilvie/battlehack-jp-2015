@@ -8,15 +8,18 @@
 		pulling-text="Pull to refresh..." 
 		on-refresh="scanBeacons()">
   	</ion-refresher>
+  	<div ng-hide="foundTable" class="loading">
+		<i class="icon ion-loading-c"></i> Searching for table...
+	</div>
+  	<div ng-show="foundTable">
+		<div>Do you want to join this?</div>
+		<div style="font-size: 25px; font-weight: bold; margin: 5px 0px;">Table</div>
+		<div>Already joined:</div>
 
-	<div>Do you want to join this?</div>
-	<div style="font-size: 25px; font-weight: bold; margin: 5px 0px;">Table</div>
-	<div>Already joined:</div>
-
-	<ion-list class="list" style="display: block;">
-		<img src="http://graph.facebook.com/67563683055/picture?type=square" ng-repeat="player in players" class="inline" style="margin: 2px;"></img>
-	</ion-list>
-
+		<ion-list class="list" style="display: block;">
+			<img src="http://graph.facebook.com/67563683055/picture?type=square" ng-repeat="player in players" class="inline" style="margin: 2px;"></img>
+		</ion-liv>
+	</div>
 	<div class="buttons" style="margin: 30px 10px 10px 10px">
 		<button class="button button-block button-balanced" ng-click="goToOrderMenu()">Yes</button>
 		<button class="button button-block button-stable" ng-click="scanBeacons()">No</button>

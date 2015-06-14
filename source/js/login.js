@@ -14,9 +14,9 @@ angular.module('myApp.login', [])
 			
 		}
 		var fbFailure = function(error) {
-			// console.error(JSON.stringify(error));
+			alert(JSON.stringify(error));
 			// auto login in development
-			fbSuccess({ id: '0000000001', secret: 'abc123456789' });
+			// bSuccess({ id: '0000000001', secret: 'abc123456789' });
 		}
 
 		if (window.cordova.platformId === 'browser') {
