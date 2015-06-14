@@ -1,23 +1,40 @@
-<ion-header-bar align-title="center" class="bar bar-header bar-positive">
-	<h1 class="title">{{title}}</h1>
-</ion-header-bar>
-
-<ion-content ng-controller="LoginCtrl">
-	<section style="display: inline-block">
+<ion-content ng-controller="LoginCtrl" style="background-size: 320px 568px; background-image: url('./img/bg_top.png');">
+	<section style="display: inline-block; margin-top:35%; width:320px; margin: 45% 0 auto 40px">
 		<section style="padding: 8px">
-			<h1>{{ TITLE }}</h1>
-		</section>
-		<section style="padding: 8px">
-			<h2>A simple login screen</h2>
+			<img src="./img/logo.png" style="width:75%; height:75%">
 		</section>
 	</section>
 	<div style="height: 20px"></div>
-	<section style="display: inline-block; float: right">
-		<section style="padding-right: 25px">
-			<h1 style="text-align: right" on-tap="login('facebook')">Login</h1>
-		</section>
-		<section style="padding-right: 25px">
-			<h1 style="text-align: right" on-tap="go('/link2')">Button</h1>
-		</section>
+	<section style="display: inline-block; font-size:18px; color:#b0dbf8; width:320px; margin-left:100px; margin-top:50%">
+		<p>choose a login</p>
+	</section>
+	<section style="display: inline-block; width:320px">
+		<span style="position:absolute; left:40px">
+			<button style="background: transparent;
+			border: none;
+			text-decoration: none;
+			background-image: url('./img/icon_google.png');
+			background-repeat: no-repeat;
+			width: 50px;
+  			height: 50px;" on-tap="login('facebook')"></button>
+		</span>
+		<span style="position:absolute; left:140px">
+			<button style="background: transparent;
+			text-decoration: none;
+			border: none;
+			background-image: url('./img/icon_fb.png');
+			background-repeat: no-repeat;
+			width: 50px;
+  			height: 50px;" on-tap="login('facebook')"></button>
+		</span>
+		<span style="position:absolute; right:40px">
+			<button style="background: transparent;
+			text-decoration: none;
+			border: none;
+			background-image: url('./img/icon_tw.png');
+			background-repeat: no-repeat;
+			width: 50px;
+  			height: 50px;"></button>
+		</span>
 	</section>
 </ion-content>
