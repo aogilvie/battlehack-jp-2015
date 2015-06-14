@@ -12,11 +12,6 @@ angular.module('myApp.search', [])
 	}, 1000);
 
 	$scope.$on('beaconsFound', function (event, beacons) {
-/*
-beacons = { immediate: [] }, { far .... }
-
-*/
-		
 		if (beacons.immediate && beacons.immediate.length > 0) {
 			var exists = false;
 			
@@ -27,15 +22,6 @@ beacons = { immediate: [] }, { far .... }
 				}
 			});
 		}
-		/*
-		if (beacons.near && beacons.near.length > 0) {
-			beaconList.near.push(beacons.near);
-		}
-		if (beacons.far && beacons.far.length > 0) {
-			beaconList.far.push(beacons.far);
-		}*/
-		// console.log("Beacon immediate: " + event.immediate[0].uuid + " - " + event.immediate[0].accuracy)
-//		beaconListLength = beaconList.length;
 	});
 
 	if (cordova.platformId === 'browser') {
