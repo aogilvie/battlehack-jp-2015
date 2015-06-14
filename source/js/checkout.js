@@ -11,10 +11,17 @@ angular.module('myApp.checkout', [])
 		
 	responsePromise.success(function(data, status, headers, config) {
 		console.log(data)
-		$scope.orders = data;
+		$scope.check = data.check;
 	});
 
 	responsePromise.error(function(data, status, headers, config) {
 		console.error('fail', data);
 	});
+
+	$scope.goBack = function () {
+		$rootScope.go('/orderMenu', {
+			restaurant: $scope.data.restaurant,
+			tableId: $scope.data.tableId
+		});
+	};
 }]);

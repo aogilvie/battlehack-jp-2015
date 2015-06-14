@@ -1,26 +1,28 @@
 <ion-header-bar align-title="center" class="bar bar-header bar-positive">
 	<button class="button button-large button-positive ion-arrow-left-a" ng-click="goBack()"></button>
-	<h1 class="title">{{restaurant.name}} Checkout</h1>
+	<h1 class="title">{{data.restaurant.data.name}} Checkout</h1>
 </ion-header-bar>
 
 <ion-content>
 	<ion-scroll direction="y" style="width: 100%; height: 100%">
-		<ion-list class="list" ng-repeat="food in menu">
-			<ion-item class="item">
-				<div class="inline">
-					<div style="text-transform:capitalize;">{{food.name}}</div>
-					<div>¥{{food.price}}</div>
-				</div>
-				<div class="buttons inline right">
-					<div class="inline" style="border: 1px solid; background-color: #ccc; padding: 12px 15px; font-size: 20px;">{{food.count}}</div>
-					<button class="button button-calm ion-minus-round inline" ng-click="minus(food.id)"></button>
-					<button class="button button-calm ion-plus-round inline" ng-click="add(food.id)"></button>
-				</div>
-			</ion-item>
-		</ion-list>
+	<ion-list class="list"
+		<ion-item class="item item-thumbnail-left" ng-repeat="data in check.lines" style="width: 100%;">
+			<div style="display: 'inline-block; width: 60%;">
+				<div>¥{{data.desc}}</div>
+				<div>¥{{data.price}}</div>
+			</div>
+			<div style="display: 'inline-block; width: 30%;">¥{{data.total}}</div>
+		</ion-item>
+	</ion-list>
 	</ion-scroll>
 </ion-content>
 
+<section style="position: absolute; bottom: 64px; text-align: center; width: 100%;">	
+<div>YOU PAY</div>
+<div style="font-size: 30;">¥{{check.total}}</div>
+</section>
+
 <ion-footer-bar align-title="center" ng-controller='PaypalCtrl' class="bar bar-footer bar-light" style="height: 65px;">
+	
 	<button class="button button-block button-balanced" ng-click="pay()">Pay</button>
 </ion-footer-bar>

@@ -56,12 +56,13 @@ angular.module('myApp.orderMenu', [])
 
 	$scope.checkout = function () {
 		clearInterval(timeout);
-		
+
 		$rootScope.go('/checkout', {
 			secret: 'secret',
 			merchantId: $scope.data.restaurant.uid,
 			tableId: $scope.data.tableId,
 			userId: 'userId',
+			restaurant: $scope.data.restaurant
 		});
 	};
 
