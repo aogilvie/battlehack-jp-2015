@@ -30,7 +30,7 @@ angular.module('myApp.table', [])
 			secret: 'secret',
 			merchantId: $scope.restaurant.uid,
 			tableId: $scope.tableId,
-			userId: 'userId' + Date.now()
+			userId: 'userId'
 		});
 			
 		responsePromise.success(function(data, status, headers, config) {

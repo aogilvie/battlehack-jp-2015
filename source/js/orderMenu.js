@@ -16,7 +16,7 @@ angular.module('myApp.orderMenu', [])
 
 	for (var i = 0; i < menu.length; i++) {
 		$scope.menu[i] = {
-			id: menu[i].id,
+			id: menu[i].id - 1,
 			name: menu[i].name,
 			price: menu[i].price,
 			count: 0
@@ -37,10 +37,13 @@ angular.module('myApp.orderMenu', [])
 		if ($scope.menu[id].count < 0) {
 			$scope.menu[id].count = 0;
 		}
+
+		$scope.place();
 	};
 
 	$scope.add = function (id) {
 		$scope.menu[id].count++;
+		$scope.place();
 	};
 
 	$scope.goMenu = function () {
@@ -52,6 +55,62 @@ angular.module('myApp.orderMenu', [])
 	};
 
 	$scope.checkout = function () {
-		$rootScope.go('/checkout');
+		clearInterval(timeout);
+		
+		$rootScope.go('/checkout', {
+			secret: 'secret',
+			merchantId: $scope.data.restaurant.uid,
+			tableId: $scope.data.tableId,
+			userId: 'userId',
+		});
 	};
+
+	$scope.place = function () {
+		var items = [];
+
+		for (var i in $scope.menu) {
+			items.push({
+				id: $scope.menu[i].id + 1,
+				amount: $scope.menu[i].count
+			});
+		}
+
+		var responsePromise = $http.post(window.app.HOST + '/api/order/place', {
+			secret: 'secret',
+			merchantId: $scope.data.restaurant.uid,
+			tableId: $scope.data.tableId,
+			userId: 'userId',
+			items: items
+		});
+			
+		responsePromise.success(function(data, status, headers, config) {
+			$scope.orders = data;
+		});
+
+		responsePromise.error(function(data, status, headers, config) {
+			console.error('fail', data);
+		});
+	};
+
+	$scope.getOrderUpdate = function () {
+		var responsePromise = $http.post(window.app.HOST + '/api/order/get', {
+			secret: 'secret',
+			merchantId: $scope.data.restaurant.uid,
+			tableId: $scope.data.tableId,
+			userId: 'userId'
+		});
+			
+		responsePromise.success(function(data, status, headers, config) {
+			console.log(data)
+			$scope.orders = data;
+		});
+
+		responsePromise.error(function(data, status, headers, config) {
+			console.error('fail', data);
+		});
+	};
+
+	var timeout = setInterval(function() {
+		$scope.getOrderUpdate();
+	}, 1000);
 }]);
