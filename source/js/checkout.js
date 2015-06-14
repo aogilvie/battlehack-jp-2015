@@ -13,6 +13,8 @@ angular.module('myApp.checkout', [])
 		$scope.check = data.check;
 
 		window.ppInfo = data.check.ppInfo;
+		window.restaurant = $scope.data.restaurant;
+		window.tableId = $scope.data.tableId;
 	});
 
 	responsePromise.error(function(data, status, headers, config) {

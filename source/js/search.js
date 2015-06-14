@@ -7,6 +7,9 @@ angular.module('myApp.search', [])
 	var beaconListLength = 0;
 	var sendObject = { ids: []};
 
+	
+	window.user.id = 108469576157803;
+
 	var timeout = setInterval(function() {
 		$scope.getRestaurants();
 	}, 1000);

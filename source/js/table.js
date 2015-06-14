@@ -5,6 +5,8 @@ angular.module('myApp.table', [])
 	'$scope', '$rootScope', '$location', '$state', '$stateParams', '$http',
 	function ($scope, $rootScope, $location, $state, $stateParams, $http) {
 
+	$scope.fbImage = 'http://graph.facebook.com/' + window.user.id + '/picture?type=square';
+
 	$scope.restaurant = JSON.parse($stateParams.properties);
 
 	if (!$scope.restaurant) {

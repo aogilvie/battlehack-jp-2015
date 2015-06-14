@@ -14,7 +14,7 @@
 
 	<ion-list class="list" ng-show="showList">
 		<ion-item class="item item-thumbnail-left" ng-repeat="restaurant in restaurants" ng-click="goToRestaurant({{restaurant.id}})">
-			<img src=""></img>
+			<img src={{restaurant.data.img}}></img>
 			<h2>{{restaurant.data.name}}</h2>
 			<p>{{restaurant.data.desc}}</p>
 		</ion-item>

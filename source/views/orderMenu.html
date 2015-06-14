@@ -28,10 +28,10 @@
 						<div>{{food.name}}</div>
 						<div>{{food.price}}</div>
 					</div>
-					<div class="inline right">
+					<div class="inline right" ng-repeat="count in food.users">
 						<div style="position: relative">
-							<img src="http://graph.facebook.com/67563683055/picture?type=square"class="inline" style="margin: 2px;"></img>
-							<div style="position: absolute; bottom: 5px; background-color: red; color: white; padding: 3px;">{{food.count}}</div>
+							<img src={{fbImage}} style="margin: 2px;"></img>
+							<div style="position: absolute; bottom: 5px; background-color: red; color: white; padding: 3px;">{{count}}</div>
 						</div>
 					</div>
 				</ion-item>
