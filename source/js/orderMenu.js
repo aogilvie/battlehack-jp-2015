@@ -5,6 +5,8 @@ angular.module('myApp.orderMenu', [])
 	'$scope', '$rootScope', '$location', '$state', '$stateParams', '$http', 
 	function ($scope, $rootScope, $location, $state, $stateParams, $http) {
 
+	$scope.fbImage = 'http://graph.facebook.com/' + window.user.id + '/picture?type=square';
+
 	$scope.data = JSON.parse($stateParams.properties);
 
 	if (!$scope.data) {
@@ -113,4 +115,7 @@ angular.module('myApp.orderMenu', [])
 	var timeout = setInterval(function() {
 		$scope.getOrderUpdate();
 	}, 1000);
+
+
+	$scope.place();
 }]);

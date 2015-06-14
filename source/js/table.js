@@ -4,7 +4,13 @@ angular.module('myApp.table', [])
 .controller('TableCtrl', [
 	'$scope', '$rootScope', '$location', '$state', '$stateParams', '$http',
 	function ($scope, $rootScope, $location, $state, $stateParams, $http) {
+<<<<<<< HEAD
+
+	$scope.fbImage = 'http://graph.facebook.com/' + window.user.id + '/picture?type=square';
+
+=======
 	$scope.foundTable;
+>>>>>>> 5d20f8d413b3399befb50df2f7e060ffc1c83844
 	$scope.restaurant = JSON.parse($stateParams.properties);
 
 	if (!$scope.restaurant) {
@@ -12,6 +18,9 @@ angular.module('myApp.table', [])
 	}
 
 	$scope.tableId = 'B9407F30-F5F8-466E-AFF9-25556B57FE6D';
+<<<<<<< HEAD
+
+=======
 	$scope.players = [67563683055, 67563683056];
 	$scope.$on('beaconsFound', function(event, data){
 		if (data.immediate && data.immediate.length > 0) {
@@ -24,6 +33,7 @@ angular.module('myApp.table', [])
 			}
 		}
 	});
+>>>>>>> 5d20f8d413b3399befb50df2f7e060ffc1c83844
 	var timeout = setInterval(function() {
 		$scope.getUsers();
 	}, 1000);

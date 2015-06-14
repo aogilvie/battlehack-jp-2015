@@ -8,7 +8,7 @@
 	<ion-list class="list">
 		<ion-item class="item" ng-repeat="data in check.lines" style="width: 100%;">
 			<div style="display: inline-block; width: 60%;">
-				<div>¥{{data.desc}}</div>
+				<div>{{data.desc}}</div>
 				<div>¥{{data.price}}</div>
 			</div>
 			<div style="display: inline-block; width: 30%; text-align: right;">¥{{data.total}}</div>
@@ -24,6 +24,6 @@
 
 <ion-footer-bar align-title="center" ng-controller='PaypalCtrl' class="bar bar-footer bar-light" style="height: 65px; text-align: center; width: 100%;">
 	<div style="display: inline-block; width: 100%;">
-		<img class="button" ng-click="pay()" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal"/>
+		<img class="button" ng-click="pay()" src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-large.png" alt="Check out with PayPal" style="padding: 0px; border: none; background: none;" />
 	</div>
 </ion-footer-bar>

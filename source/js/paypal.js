@@ -30,7 +30,20 @@ angular.module('myApp.paypal', [])
 
 	function onSuccesfulPayment (payment) {
 		//alert('Payment Success! ' + JSON.stringify(payment));
-		console.log('payment success: ' + JSON.stringify(payment, null, 4));
+
+		var responsePromise = $http.post(window.app.HOST + '/api/order/check/', {
+			secret: window.user.secret || 'secret',
+			merchantId: window.restaurant.uid,
+			tableId: window.tableId,
+			userId: window.user.id,
+			receipt: payment
+		});
+			
+		responsePromise.success(function(data, status, headers, config) {
+			console.log('payment success: ' + JSON.stringify(payment, null, 4));
+			$rootScope.go('/home');
+		});
+
 		$rootScope.go('/home');
 	}
 

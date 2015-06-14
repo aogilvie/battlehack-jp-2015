@@ -1,3 +1,5 @@
+window.user = window.user || { id: '100007642326211' };
+
 angular.module('myApp.login', [])
 .controller('LoginCtrl', ['$scope', '$rootScope', '$window', '$state', '$location', function ($scope, $rootScope, $window, $state, $location) {
 	// Login controller

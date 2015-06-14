@@ -17,9 +17,10 @@
 		<div>Already joined:</div>
 
 		<ion-list class="list" style="display: block;">
-			<img src="http://graph.facebook.com/67563683055/picture?type=square" ng-repeat="player in players" class="inline" style="margin: 2px;"></img>
-		</ion-liv>
+			<img src={{fbImage}} ng-repeat="player in players" class="inline" style="margin: 2px;"></img>
+		</ion-list>
 	</div>
+
 	<div class="buttons" style="margin: 30px 10px 10px 10px">
 		<button class="button button-block button-balanced" ng-click="goToOrderMenu()">Yes</button>
 		<button class="button button-block button-stable" ng-click="scanBeacons()">No</button>
